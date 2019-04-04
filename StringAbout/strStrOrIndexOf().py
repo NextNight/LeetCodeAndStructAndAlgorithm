@@ -32,7 +32,7 @@ class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
         if needle=='' or needle==None:return 0
         return haystack.find(needle)
-        # return haystack.index(needle)
+
 if __name__ == '__main__':
     solu =Solution()
     haystack,needle= 'hello','zz'

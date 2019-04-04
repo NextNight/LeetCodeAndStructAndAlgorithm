@@ -24,6 +24,7 @@ def quick_sort(nums):
     return quick_sort(left)+[midt]+quick_sort(right)
 
 def quick_sort_2(nums,left,right):
+    '''TODO：未完成'''
     if len(nums)<=1:return nums
     i,j,midt =0,len(nums)-1,nums[0]
     while i<=j:
