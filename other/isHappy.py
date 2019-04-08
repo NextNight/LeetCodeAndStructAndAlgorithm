@@ -48,4 +48,4 @@ class Solution(object):
 
 if __name__ == '__main__':
     solu = Solution()
-    print(solu.isHappy(2))
+    print(solu.isHappy(1))
