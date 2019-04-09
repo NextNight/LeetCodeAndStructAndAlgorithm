@@ -22,24 +22,24 @@ class LinkedList(object):
 	def __init__(self):
 		self._head = Node(None)
 		self._tail = Node(None)
-		self._head._next(self._tail)
+		self._head._next=self._tail
 		self._size = 0
 
 	def add(self, data):
 		"""头插法：新加入的元素永远在head._next"""
 		node = Node(data)
-		node._next(self._head._next())
-		self._head._next(node)
+		node._next = self._head._next
+		self._head._next = node
 
 		self._size += 1
 
 	def remove(self, data):
 		"""删除节点"""
 		prev = self._head
-		while prev.get_next() is not self._tail:
-			cur = prev.get_next()
-			if cur.get_data() == data:
-				prev.set_next(cur.get_next())
+		while prev._next is not self._tail:
+			cur = prev._next
+			if cur._data() == data:
+				prev._next = cur._next
 
 		self._size -=1
 
@@ -48,9 +48,9 @@ class LinkedList(object):
 
 	def is_exist(self, data):
 		"""查询某值是否在链表"""
-		if any([self._head.get_next() == self._tail, data == None]):
+		if any([self._head._next == self._tail, data == None]):
 			return False
-		cur = self._head.get_next()
+		cur = self._head._next
 		while cur is not self._tail:
 			if cur.get_data == data:
 				return True
@@ -58,16 +58,16 @@ class LinkedList(object):
 				return False
 
 	def is_empty(self):
-		return self._head.get_next() == self._tail
+		return self._head._next == self._tail
 
 	def foreach(self):
-		if self._head.get_next() == self._tail:
+		if self._head._next == self._tail:
 			return None
 		data = []
-		cur = self._head.get_next()
+		cur = self._head._next
 		while cur is not self._tail:
-			data.append(cur.get_data())
-			cur = cur.get_next()
+			data.append(cur._data)
+			cur = cur._next
 		return data
 
 if __name__ == '__main__':
