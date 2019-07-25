@@ -27,7 +27,13 @@
 """
 class Solution:
     def longestCommonPrefix(self, strs: 'List[str]') -> str:
-        if len(strs)<1: return ""
+        '''方案：1、最长公共前缀满足最长为最短的元素的长度L
+                2、顺序取每个字符串的第i位放入set中，如果长度为1，则说明相等，则将这个字符添加到最长公共前缀串
+                3、一旦不满足2条件，则匹配失败。
+                4、返回
+        '''
+        if len(strs)<1:
+            return ""
         min_len = min([len(s) for s in strs])
         longpf=""
         for i in range(min_len):

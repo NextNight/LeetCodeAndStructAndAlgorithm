@@ -26,7 +26,7 @@
 
 class Solution(object):
     def containsNearbyAlmostDuplicate(self, nums, k, t):
-        """TODO:10000超时
+        """TODO:巧妙的前置窗口
         :type nums: List[int]
         :type k: int
         :type t: int

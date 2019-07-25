@@ -28,14 +28,34 @@
 
 """
 
+
 class Solution:
     def strStr(self, haystack: str, needle: str) -> int:
-        if needle=='' or needle==None:return 0
+        if needle == '' or needle == None: return 0
         return haystack.find(needle)
 
+    def strStr_(self, haystack: str, needle: str) -> int:
+        '''方案：1、获取needle长度n和第一个字符f
+                2、从haystack找到所有f字符的索引，然后截取长度为n的字符串和needle比较
+        '''
+        if needle == '' or needle is None:
+            return 0
+        if haystack is None:
+            return -1
+        l1, l2 = len(haystack), len(needle)
+        if l2 > l1: return -1
+        firstc = needle[0]
+        cindex = []
+        for i, c in enumerate(haystack):
+            if c == firstc:
+                cindex.append(i)
+        for i in cindex:
+            if haystack[i:min(i + l2, l1)] == needle:
+                return i
+        return -1
+
+
 if __name__ == '__main__':
-    solu =Solution()
-    haystack,needle= 'hello','zz'
-
-    print(solu.strStr(haystack,needle))
-
+    solu = Solution()
+    haystack, needle = None, 'zz'
+    print(solu.strStr_(haystack, needle))
