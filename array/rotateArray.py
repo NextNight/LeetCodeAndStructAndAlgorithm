@@ -41,25 +41,33 @@ class Solution:
             return
         if k >= len(nums):
             k = k - len(nums)
-        if k < len(nums) / 2:
+        if k < len(nums) / 2:  # 右移
             sub = nums[-k:]
             print(sub)
-            for i in range(len(nums) - 1, k-1, -1):
+            for i in range(len(nums) - 1, k - 1, -1):
                 nums[i] = nums[i - k]
             for i in range(k):
                 nums[i] = sub[i]
-        else:
-            k=len(nums)-k
+        else:  # 左移
+            k = len(nums) - k
             sub = nums[:k]
             for i in range(len(nums) - k):
                 nums[i] = nums[i + k]
             for i in range(-k, 0, 1):
                 nums[i] = sub[i]
 
+    def rotate_(self, nums, k) -> None:
+        '''三步翻转法：但是不是原地算法需要返回值'''
+        if len(nums) == 1 or nums is None:
+            return
+        nums = nums[:-k][::-1] + nums[-k:][::-1]
+        nums = nums[::-1]
+        print(nums)
+
 
 if __name__ == '__main__':
     solu = Solution()
     nums = [1, 2, 3, 4, 5, 6, 7]
     k = 3
-    solu.rotate(nums, k)
+    solu.rotate_(nums, k)
     print(nums)
