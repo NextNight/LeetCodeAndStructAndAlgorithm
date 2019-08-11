@@ -66,7 +66,10 @@ class Solution:
         for i in range(n):
             for j in range(i):
                 matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
-                
+
+    def rotate_(self, matrix) -> None:
+        '''🐂牛皮哦'''
+        matrix[:] = map(list, zip(*matrix[::-1]))
 
 if __name__ == '__main__':
     solu = Solution()
@@ -76,7 +79,7 @@ if __name__ == '__main__':
         [13, 3, 6, 7],
         [15, 14, 12, 16]
     ]
-    solu.rotate(matrix)
+    solu.rotate_(matrix)
     assert matrix == [
         [15, 13, 2, 5],
         [14, 3, 4, 1],
