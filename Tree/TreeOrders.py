@@ -59,3 +59,11 @@ class TreeOrder(object):
         while len(node_list) > 0:
             order_list.append([node.val for node in node_list])
             node_list = nextNodes(node_list)
+
+    def maxDepth(self, root: TreeNode):
+        '''二叉树的最大深度'''
+        if root == None:
+            return 0
+        left_height = self.maxDepth(root.left)
+        right_height = self.maxDepth(root.right)
+        return max(left_height,right_height)+1

@@ -15,6 +15,7 @@ class TreeNode:
         self.right = None
 
 def innerOrder(root,innerList):
+    '''中序遍历'''
     if root==None:return
     innerOrder(root.left,innerList)
     innerList.append(root.val)

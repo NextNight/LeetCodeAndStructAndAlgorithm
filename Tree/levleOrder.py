@@ -33,14 +33,9 @@ class TreeNode:
         self.left = None
         self.right = None
 
-
 class Solution:
     def levelOrder(self, root):
-        """
-        :type root: TreeNode
-        :rtype: List[List[int]]
-        """
-
+        '''层次遍历'''
         def leveNode(nodes):
             dts = []
             for node in nodes:
