@@ -18,26 +18,59 @@ class TreeNode:
 
 
 class TreeOrder(object):
-    def prevOrder(self, root: TreeNode, order_list):
-        '''先序遍历'''
+    def prevOrder_v1(self, root: TreeNode, order_list):
+        '''先序遍历：递归解法'''
         if root == None: return
         order_list.append(root.val)
-        self.prevOrder(root.left, order_list)
-        self.prevOrder(root.right, order_list)
+        self.prevOrder_v1(root.left, order_list)
+        self.prevOrder_v1(root.right, order_list)
+        print(order_list)
 
-    def innerOrder(self, root: TreeNode, order_list):
-        '''中序遍历'''
+    def prevOrder_v2(self, root: TreeNode, order_list):
+        '''先序遍历：迭代解法'''
         if root == None: return
-        self.innerOrder(root.left, order_list)
-        order_list.append(root.val)
-        self.innerOrder(root.left, order_list)
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            order_list.append(node.val)
+            if node.right:
+                stack.append(node.right)
+            if node.left:
+                stack.append(node.left)
+        print(order_list)
 
-    def postOrder(self, root: TreeNode, order_list):
+    def innerOrder_v1(self, root: TreeNode, order_list):
+        '''中序遍历:递归解法'''
+        if root == None: return
+        self.innerOrder_v1(root.left, order_list)
+        order_list.append(root.val)
+        self.innerOrder_v1(root.right, order_list)
+        print(order_list)
+
+    def innerOrder_v2(self, root: TreeNode, order_list):
+        '''中序遍历：迭代解法'''
+        if root == None: return
+        stack = []
+        curr = root
+        while curr or stack:
+            while curr:
+                stack.append(curr)
+                curr = curr.left
+            curr = stack.pop()
+            order_list.append(curr.val)
+            curr = curr.right
+        print(order_list)
+
+    def postOrder_v1(self, root: TreeNode, order_list):
         '''后序遍历'''
         if root == None: return
-        self.postOrder(root.left, order_list)
-        self.postOrder(root.right, order_list)
+        self.postOrder_v1(root.left, order_list)
+        self.postOrder_v1(root.right, order_list)
         order_list.append(root.val)
+
+    def postOrder_v2(self, root: TreeNode, order_list):
+        '''后序遍历：迭代解法 TODO'''
+        if root == None: return
 
     def levleOrder(self, root: TreeNode, order_list):
         '''层次遍历'''
@@ -66,4 +99,25 @@ class TreeOrder(object):
             return 0
         left_height = self.maxDepth(root.left)
         right_height = self.maxDepth(root.right)
-        return max(left_height,right_height)+1
+        return max(left_height, right_height) + 1
+
+
+if __name__ == '__main__':
+    toder = TreeOrder()
+    order_list = []
+    na = TreeNode('A')
+    nb = TreeNode('B')
+    nc = TreeNode('C')
+    nd = TreeNode('D')
+    ne = TreeNode('E')
+    nf = TreeNode('F')
+    na.left = nb
+    na.right = nc
+    nb.left = nd
+    nb.right = ne
+    nc.left = nf
+
+    # toder.prevOrder_v1(root=na,order_list=order_list)
+    # toder.prevOrder_v2(root=na, order_list=order_list)
+    # toder.innerOrder_v1(root=na, order_list=order_list)
+    toder.innerOrder_v2(root=na, order_list=order_list)
