@@ -9,7 +9,6 @@
   @Desc    : 树的各种遍历
 """
 
-
 class TreeNode:
     def __init__(self, x):
         self.val = x
@@ -69,29 +68,41 @@ class TreeOrder(object):
         order_list.append(root.val)
 
     def postOrder_v2(self, root: TreeNode, order_list):
-        '''后序遍历：迭代解法 TODO'''
+        '''后序遍历：迭代解法'''
         if root == None: return
+        stack = [root]
+        while stack:
+            node = stack.pop()
+            order_list.append(node.val)
+            if node.left:
+                stack.append(node.left)
+            if node.right:
+                stack.append(node.right)
+        print(order_list[::-1])
 
-    def levleOrder(self, root: TreeNode, order_list):
-        '''层次遍历'''
-        node_list = []
-        if root == None:
-            return
-        else:
-            node_list.append(root)
+    def levelOrder_v1(self, root: TreeNode, order_list):
+        '''层次遍历:不含null'''
+        queue = [root]
+        while queue:
+            node = queue.pop(0)
+            order_list.append(node.val)
+            if node.left:
+                queue.append(node.left)
+            if node.right:
+                queue.append(node.right)
+        print(order_list)
 
-        def nextNodes(node_list):
-            nodes = []
-            for node in node_list:
-                if node.left:
-                    nodes.append(node.left)
-                if node.right:
-                    nodes.append(node.right)
-            return nodes
-
-        while len(node_list) > 0:
-            order_list.append([node.val for node in node_list])
-            node_list = nextNodes(node_list)
+    def levelOrder_v2(self, root: TreeNode, order_list):
+        '''层次遍历:含null'''
+        queue = [root]
+        while queue:
+            print(queue)
+            node = queue.pop(0)
+            if node is None:continue
+            order_list.append(node.val)
+            queue.append(node.left)
+            queue.append(node.right)
+        print(order_list)
 
     def maxDepth(self, root: TreeNode):
         '''二叉树的最大深度'''
@@ -120,4 +131,7 @@ if __name__ == '__main__':
     # toder.prevOrder_v1(root=na,order_list=order_list)
     # toder.prevOrder_v2(root=na, order_list=order_list)
     # toder.innerOrder_v1(root=na, order_list=order_list)
-    toder.innerOrder_v2(root=na, order_list=order_list)
+    # toder.innerOrder_v2(root=na, order_list=order_list)
+    # toder.postOrder_v1(root=na, order_list=order_list)
+    # toder.postOrder_v2(root=na, order_list=order_list)
+    toder.levelOrder_v2(na,order_list=order_list)
