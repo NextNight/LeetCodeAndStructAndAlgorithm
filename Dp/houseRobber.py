@@ -57,7 +57,7 @@ class Solution:
         return max_p[n - 1]
 
     def rob_4(self, nums: 'List[int]') -> int:
-        '''打家劫舍'''
+        '''打家劫舍:DP'''
         if any([nums == None, len(nums) == 0]): return 0
         n = len(nums)
         if n == 1: return nums[0]
